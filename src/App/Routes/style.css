@@ -1,0 +1,115 @@
+@keyframes chewTop {
+  0% {
+    transform: translateY(-70vh);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes chewBottom {
+  0% {
+    transform: translateY(60vh);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.chew-enter {
+  overflow: hidden;
+}
+.chew-enter::after,
+.chew-enter::before {
+  content: none;
+}
+.chew-enter > * {
+  opacity: 0;
+
+  animation-duration: 0.001s;
+  animation-delay: 0.5s;
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+}
+
+/* .chew-enter.chew-enter-active {} */
+.chew-enter.chew-enter-active::after {
+  content: "";
+
+  position: absolute;
+  top: 0px;
+  z-index: 100;
+
+  width: 100vw;
+  height: 70vh;
+  background-image: url("../images/top.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+
+  animation-duration: 0.5s;
+  animation-name: chewTop;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+}
+.chew-enter.chew-enter-active::before {
+  content: "";
+
+  position: absolute;
+  bottom: 0px;
+  z-index: 100;
+
+  width: 100vw;
+  height: 60vh;
+  background-image: url("../images/bottom.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+
+  animation-duration: 0.5s;
+  animation-name: chewBottom;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+}
+
+.chew-exit {
+  overflow: hidden;
+
+  animation-duration: 0.001s;
+  animation-delay: 0.5s;
+  animation-name: fadeOut;
+  animation-fill-mode: forwards;
+}
+/* .chew-exit.chew-exit-active {} */
+.chew-exit.chew-exit-active::after {
+  content: "";
+  z-index: 10000;
+
+  position: fixed;
+  top: 0px;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-image: url("../images/effect.png");
+  animation-duration: 0.5s;
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+}
